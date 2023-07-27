@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Initialize the counter
+count=1
+# Display "Best School" 10 times using a while loop
+while [ "$count" -le 10 ]; do
+    echo "Best School"
+    ((count++))
+done

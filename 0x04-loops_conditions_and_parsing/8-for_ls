@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Loop through the files in the current directory
+for file in *; do
+    if [[ ! "$file" =~ ^\. ]]; then
+        filename_part=$(echo "$file" | cut -d'-' -f2-)
+        echo "$filename_part"
+    fi
+done

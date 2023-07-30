@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Check if the apache-access.log file exists
+
+if [ ! -f "apache-access.log" ]; then
+  echo "Error: The apache-access.log file is not found. Please make sure it exists in the current directory."
+  exit 1
+fi
+awk '{print $1, $9}' apache-access.log
+ 

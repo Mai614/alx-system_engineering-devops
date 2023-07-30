@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Description: This Bash script displays "To infinity and beyond"
+
+cleanup_and_exit() {
+    echo "Cleaning up and terminating..."
+    rm -f /var/run/myscript.pid
+    exit
+}
+
+trap cleanup_and_exit SIGTERM SIGQUIT
+trap 'echo "Y U no love me?!"' SIGINT
+echo $$ > /var/run/myscript.pid
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done

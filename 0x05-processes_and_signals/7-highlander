@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Description: This Bash script displays "To infinity and beyond"
+
+trap 'exit' SIGINT
+trap 'echo "I am invincible!!!"; exit' SIGTERM
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done

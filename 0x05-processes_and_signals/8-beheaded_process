@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Find and kill the process with the name "7-highlander"
+
+pkill 7-highlander

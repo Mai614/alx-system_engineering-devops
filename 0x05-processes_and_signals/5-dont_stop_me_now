@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Check if the PID file exists and read the PID from it
+
+if [ -f "pid_file.txt" ]; then
+    pid=$(cat "pid_file.txt")
+    echo "Stopping 4-to_infinity_and_beyond process (PID: $pid)"
+    kill "$pid"
+    rm "pid_file.txt"
+else
+    echo "4-to_infinity_and_beyond process is not running."
+fi

@@ -1,21 +1,4 @@
 #!/usr/bin/env bash
 # container’s Nginx installation from listening on port 80
-
-nginx_config="/etc/nginx/sites-enabled/default"
-
-if [ ! -f "$nginx_config" ]; then
-    echo "Nginx configuration file not found at $nginx_config"
-    exit 1
-fi
-
-sed -i 's/listen 8080/listen 80/g' "$nginx_config"
-
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 service nginx restart
-
-nginx_status=$(netstat -tuln | grep ':80')
-
-if [[ -z "$nginx_status" ]]; then
-    echo "Nginx is not listening on port 80"
-    exit 1
-fi
-http_status=$(curl -I http://localhost 2>/dev/null | head -n 1 | cut -d$' ' -f2)

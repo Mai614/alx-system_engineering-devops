@@ -1,2 +1,4 @@
  * Restarting nginx nginx
    ...done.
+./0-nginx_likes_port_80: line 15: netstat: command not found
+Nginx is not listening on port 80

@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 # Configure your domain zone so that the subdomain www points
+
+function get_subdomain_info() {
+    local subdomain="$1"
+    local record_type=$(dig +short -t CNAME "$subdomain.$domain")
+    if [ -z "$record_type" ]; then
+        record_type=$(dig +short -t A "$subdomain.$domain")
+    fi
+    local destination=$(dig +short "$subdomain.$domain")
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+}
+
 domain="$1"
 subdomain="$2"
-
 if [ -z "$subdomain" ]; then
     subdomains=("www" "lb-01" "web-01" "web-02")
     for sub in "${subdomains[@]}"; do
@@ -11,3 +21,4 @@ if [ -z "$subdomain" ]; then
 else
     get_subdomain_info "$subdomain"
 fi
+

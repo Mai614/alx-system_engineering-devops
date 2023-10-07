@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-
-# Create a backup of the default Nginx configuration file
-sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.backup
-
-# Replace occurrences of "8080" with "80" in the default Nginx configuration file
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-
-# Restart the Nginx service to apply the changes
-sudo service nginx restart
+#configure nginx server to listen for port 80
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+service nginx restart

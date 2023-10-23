@@ -1,34 +1,35 @@
 #!/usr/bin/python3
 
 """
-a Python script that, using this REST API, for a given employee ID, returns 
-information about his/her TODO list progress and exports the data in CSV format.
+Python script that exports data in the CSV format
 """
 
-import csv
 from requests import get
 from sys import argv
+import csv
 
 if __name__ == "__main__":
     response = get('https://jsonplaceholder.typicode.com/todos/')
-    tasks_data = response.json()
-    employee_id = int(argv[1])
+    data = response.json()
 
-    response2 = get(f'https://jsonplaceholder.typicode.com/users/{employee_id}')
-    user_data = response2.json()
-    employee_name = user_data.get('username', 'Unknown Employee')
+    row = []
+    response2 = get('https://jsonplaceholder.typicode.com/users')
+    data2 = response2.json()
 
-    csv_filename = f"{employee_id}.csv"
+    for i in data2:
+        if i['id'] == int(argv[1]):
+            employee = i['username']
 
-    with open(csv_filename, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+    with open(argv[1] + '.csv', 'w', newline='') as file:
+        writ = csv.writer(file, quoting=csv.QUOTE_ALL)
 
-        for task in tasks_data:
-            if task.get('userId') == employee_id:
-                task_completed_status = "COMPLETED" if task.get('completed') else "NOT COMPLETED"
-                task_title = task.get('title')
-                csv_writer.writerow([employee_id, employee_name, task_completed_status, task_title])
+        for i in data:
 
-    print(f"CSV data has been exported to {csv_filename}")
+            row = []
+            if i['userId'] == int(argv[1]):
+                row.append(i['userId'])
+                row.append(employee)
+                row.append(i['completed'])
+                row.append(i['title'])
 
+                writ.writerow(row)

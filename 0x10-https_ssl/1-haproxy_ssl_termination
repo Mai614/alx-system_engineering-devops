@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#configure HAproxy to accept encrypted traffic for your subdomain
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 <domain> [subdomain]"
+  exit 1
+fi
+
+DOMAIN="$1"
+
+if [ $# -eq 2 ]; then
+  SUBDOMAIN="$2"
+  URL="$SUBDOMAIN.$DOMAIN"
+  RECORD=$(dig +short "$URL" | head -1)
+  RECORDTYPE=$(dig "$URL" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{print $4}')
+  echo "The subdomain $SUBDOMAIN is a $RECORDTYPE record and points to $RECORD"
+else
+  for SUBDOMAIN in 'www' 'lb-01' 'web-01' 'web-02'
+  do
+      URL="$SUBDOMAIN.$DOMAIN"
+      RECORD=$(dig +short "$URL" | head -1)
+      RECORDTYPE=$(dig "$URL" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{print $4}')
+      echo "The subdomain $SUBDOMAIN is a $RECORDTYPE record and points to $RECORD"
+  done
+fi

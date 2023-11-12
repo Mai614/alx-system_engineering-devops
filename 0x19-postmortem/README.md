@@ -3,6 +3,7 @@
 **Issue Summary:**
 
 - **Duration:**
+
   - Start Time: January 22, 2018, 17:23 PST
   - End Time: January 22, 2018, 17:31 PST
 
@@ -60,5 +61,5 @@
   - Conduct training sessions for operations teams on identifying and troubleshooting configuration file errors effectively.
 
 **Summation:**
-
+![1601647907814](https://github.com/Mai614/alx-system_engineering-devops/assets/29871168/81fc3925-ae18-4f50-b596-44a25af66f6a)
 In summary, the outage was caused by a simple typographical error, showcasing the significance of thorough testing and vigilant monitoring in the deployment process. The incident prompted the creation of a Puppet manifest for automated resolution and highlighted the importance of ongoing preventive measures to maintain a stable web application. As programmers, acknowledging the potential for errors and actively implementing measures to prevent recurrence remains pivotal in ensuring system reliability.

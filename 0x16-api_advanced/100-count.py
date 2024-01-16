@@ -1,29 +1,40 @@
 #!/usr/bin/python3
-""" 
-a recursive function that queries the Reddit API
 """
-import json
+A recursive function that queries the Reddit API.
+"""
+
 import requests
 
-def count_words(subreddit, word_list, after="", count=[]):
+def count_words(subreddit, word_list, after="", count=None):
     """
     Count the occurrences of specific words in the
     titles of hot posts from a given subreddit.
+
+    Parameters:
+    - subreddit (str): The name of the subreddit.
+    - word_list (list): A list of words to count occurrences.
+    - after (str): The identifier of the last post processed (used for pagination).
+    - count (list): A list to store the count of occurrences for each word.
+
+    Returns:
+    - None: Prints the count of occurrences for each word in the word_list.
     """
 
-    if after == "":
+    if count is None:
         count = [0] * len(word_list)
 
-    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    request = requests.get(url,
-                           params={'after': after},
-                           allow_redirects=False,
-                           headers={'user-agent': 'bhalut'})
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    request = requests.get(
+        url,
+        params={'after': after},
+        allow_redirects=False,
+        headers={'user-agent': 'bhalut'}
+    )
 
     if request.status_code == 200:
         data = request.json()
 
-        for topic in (data['data']['children']):
+        for topic in data['data']['children']:
             for word in topic['data']['title'].split():
                 for i in range(len(word_list)):
                     if word_list[i].lower() == word.lower():
@@ -52,10 +63,11 @@ def count_words(subreddit, word_list, after="", count=[]):
 
             for i in range(len(word_list)):
                 if (count[i] > 0) and i not in save:
-                    print("{}: {}".format(word_list[i].lower(), count[i]))
+                    print(f"{word_list[i].lower()}: {count[i]}")
         else:
             count_words(subreddit, word_list, after, count)
 
 if __name__ == "__main__":
+    # You can add code here to test the function if needed
     pass
 

@@ -5,6 +5,7 @@ A recursive function that queries the Reddit API.
 
 import requests
 
+
 def count_words(subreddit, word_list, after="", count=None):
     """
     Count the occurrences of specific words in the
@@ -13,7 +14,8 @@ def count_words(subreddit, word_list, after="", count=None):
     Parameters:
     - subreddit (str): The name of the subreddit.
     - word_list (list): A list of words to count occurrences.
-    - after (str): The identifier of the last post processed (used for pagination).
+    - after (str): The identifier of the last
+    - post processed (used for pagination).
     - count (list): A list to store the count of occurrences for each word.
 
     Returns:
@@ -68,6 +70,5 @@ def count_words(subreddit, word_list, after="", count=None):
             count_words(subreddit, word_list, after, count)
 
 if __name__ == "__main__":
-    # You can add code here to test the function if needed
     pass
 

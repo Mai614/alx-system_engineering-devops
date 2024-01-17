@@ -16,10 +16,12 @@ def count_words(subreddit, word_list, after="", count=None):
     - word_list (list): A list of words to count occurrences.
     - after (str): The identifier of the last
       post processed (used for pagination).
-    - count (list): A list to store the count of occurrences for each word.
+    - count (list): A list to store the count
+      of occurrences for each word.
 
     Returns:
-    - None: Prints the count of occurrences for each word in the word_list.
+    - None: Prints the count of occurrences
+      for each word in the word_list.
     """
 
     if count is None:

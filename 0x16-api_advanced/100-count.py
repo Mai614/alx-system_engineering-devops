@@ -74,4 +74,3 @@ def count_words(subreddit, word_list, after="", count=None):
 if __name__ == "__main__":
     # You can add code here to test the function if needed
     pass
-

@@ -5,7 +5,7 @@ import requests
 
 
 def top_ten(subreddit):
-    
+
     """
     Print the titles of the first 10 hot posts for a given subreddit.
 
@@ -15,7 +15,7 @@ def top_ten(subreddit):
     Returns:
     - None: Prints the titles of the posts or 'None' if an error occurs.
     """
-   
+
     base_url = 'https://www.reddit.com'
     sort = 'top'
     limit = 10

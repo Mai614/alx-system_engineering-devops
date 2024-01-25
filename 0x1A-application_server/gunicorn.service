@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Gracefully reloads Gunicorn.
+
+# Use pgrep to find Gunicorn process IDs
+pgrep -f 'gunicorn.*web_dynamic.2-hbnb:app' | xargs -I {} kill -HUP {}
